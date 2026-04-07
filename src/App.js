@@ -1,11 +1,27 @@
-import { startTransition } from "react";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Layout from "./pages/Layout";
+import Students from "./pages/Students";
+import Dashboard from "./pages/Dashboard";
+import Fees from "./pages/Fees";
+import Attendance from "./pages/Attendance";
+import Hostel from "./pages/Hostel";
 
 function App() {
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>My ERP System 🚀</h1>
-      <h2>Welcome Ramnivas</h2>
-    </div>
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/students" element={<Students />} />
+          <Route path="/fees" element={<Fees />} />
+          <Route path="/attendance" element={<Attendance />} />
+          <Route path="/hostel" element={<Hostel />} />
+        </Routes>
+      </Layout>
+    </Router>
   );
 }
 
