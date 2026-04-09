@@ -1,35 +1,68 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f5f6fa;
+  background: linear-gradient(135deg, #e3f2fd, #f5f7fa);
 }
 
-/* Buttons */
-button {
-  padding: 8px 15px;
-  border: none;
-  background: #3498db;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
+/* Layout */
+.container {
+  padding: 20px;
 }
 
-button:hover {
-  background: #2980b9;
+/* Headings */
+h2, h3 {
+  color: #333;
 }
 
 /* Inputs */
 input {
-  padding: 8px;
-  width: 200px;
+  padding: 10px;
+  margin: 5px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 6px;
+  outline: none;
 }
 
-/* Card shadow */
-.card {
+input:focus {
+  border-color: #007bff;
+}
+
+/* Buttons */
+button {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
   background: white;
-  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background: #007bff;
+  color: white;
+}
+
+tr:hover {
+  background: #f1f1f1;
 }

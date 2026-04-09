@@ -1,61 +1,54 @@
 import React, { useState, useEffect } from "react";
 
-function Hostel() {
-  const [hostels, setHostels] = useState(() => {
-    const saved = localStorage.getItem("hostels");
-    return saved ? JSON.parse(saved) : [];
-  });
-
+const Hostel = () => {
+  const [students, setStudents] = useState([]);
   const [name, setName] = useState("");
-  const [room, setRoom] = useState("");
 
+  // ✅ Load
   useEffect(() => {
-    localStorage.setItem("hostels", JSON.stringify(hostels));
-  }, [hostels]);
+    const saved = JSON.parse(localStorage.getItem("hostel"));
+    if (saved) setStudents(saved);
+  }, []);
 
-  const addHostel = () => {
-    if (!name || !room) return;
+  // ✅ Save
+  useEffect(() => {
+    localStorage.setItem("hostel", JSON.stringify(students));
+  }, [students]);
 
-    setHostels([...hostels, { name, room }]);
+  const addStudent = () => {
+    if (!name) return;
+
+    const newStudent = {
+      id: Date.now(),
+      name,
+      room: Math.floor(Math.random() * 100),
+    };
+
+    setStudents([...students, newStudent]);
     setName("");
-    setRoom("");
-  };
-
-  const deleteHostel = (index) => {
-    const updated = hostels.filter((_, i) => i !== index);
-    setHostels(updated);
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Hostel Page</h1>
+    <div>
+      <h2>Hostel</h2>
 
       <input
-        placeholder="Student Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        placeholder="Student Name"
       />
-      <br /><br />
 
-      <input
-        placeholder="Room Number"
-        value={room}
-        onChange={(e) => setRoom(e.target.value)}
-      />
-      <br /><br />
+      <button onClick={addStudent}>Add to Hostel</button>
 
-      <button onClick={addHostel}>Assign Room</button>
-
-      <h2 style={{ marginTop: "30px" }}>Hostel List</h2>
-
-      {hostels.map((h, index) => (
-        <div key={index}>
-          {h.name} - Room {h.room}
-          <button onClick={() => deleteHostel(index)}>Delete</button>
-        </div>
-      ))}
+      <ul>
+        {students.map((s) => (
+          <li key={s.id}>
+            {s.name} - Room {s.room}
+          </li>
+        ))}
+      </ul>
     </div>
   );
-}
+};
 
 export default Hostel;
