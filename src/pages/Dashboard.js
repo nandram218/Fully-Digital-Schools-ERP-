@@ -1,62 +1,49 @@
 import React from "react";
 
 const Dashboard = ({ students }) => {
-  // safety fix
-  const safeStudents = students || [];
+  const totalStudents = students.length;
 
-  const totalStudents = safeStudents.length;
+  const class10 = students.filter((s) => s.class === "10th").length;
+  const class11 = students.filter((s) => s.class === "11th").length;
+  const class12 = students.filter((s) => s.class === "12th").length;
 
-  const totalFees = safeStudents.reduce(
-    (sum, s) => sum + (s.totalFees || 0),
-    0
-  );
-
-  const totalPaid = safeStudents.reduce(
-    (sum, s) => sum + (s.paidFees || 0),
-    0
-  );
-
-  const totalPending = totalFees - totalPaid;
+  const cardStyle = {
+    padding: "20px",
+    borderRadius: "10px",
+    minWidth: "150px",
+    textAlign: "center",
+    color: "#fff"
+  };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div>
       <h2>Dashboard</h2>
 
-      <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: "20px" }}>
         
-        <div style={cardStyle}>
+        <div style={{ ...cardStyle, background: "#4CAF50" }}>
           <h3>Total Students</h3>
           <p>{totalStudents}</p>
         </div>
 
-        <div style={cardStyle}>
-          <h3>Total Fees</h3>
-          <p>₹ {totalFees}</p>
+        <div style={{ ...cardStyle, background: "#2196F3" }}>
+          <h3>Class 10th</h3>
+          <p>{class10}</p>
         </div>
 
-        <div style={cardStyle}>
-          <h3>Paid Fees</h3>
-          <p>₹ {totalPaid}</p>
+        <div style={{ ...cardStyle, background: "#FF9800" }}>
+          <h3>Class 11th</h3>
+          <p>{class11}</p>
         </div>
 
-        <div style={cardStyle}>
-          <h3>Pending Fees</h3>
-          <p>₹ {totalPending}</p>
+        <div style={{ ...cardStyle, background: "#E91E63" }}>
+          <h3>Class 12th</h3>
+          <p>{class12}</p>
         </div>
 
       </div>
     </div>
   );
-};
-
-const cardStyle = {
-  flex: 1,
-  minWidth: "200px",
-  padding: "20px",
-  background: "#1976d2",
-  color: "white",
-  borderRadius: "10px",
-  textAlign: "center",
 };
 
 export default Dashboard;

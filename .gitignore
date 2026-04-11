@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+# backup folders (IMPORTANT for you)
+frontend.old.backup/
+
+# optional
+coverage/
+.cache/
